@@ -40,4 +40,24 @@ class EmailValidatorTest {
     fun emailValidator_NullEmail_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail(null))
     }
+
+    @Test
+    fun emailValidator_noDomainEmail() {
+        assertFalse(EmailValidator.isValidEmail("user@"))
+    }
+
+    @Test
+    fun emailValidator_onlyA(){
+        assertFalse(EmailValidator.isValidEmail("@"))
+    }
+
+    @Test
+    fun emailValidator_correctEmailWithDots(){
+        assertTrue(EmailValidator.isValidEmail("a.m.skripin@gmail.com"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailWithComma(){
+        assertFalse(EmailValidator.isValidEmail("a.m,skripin@gmail.com"))
+    }
 }
